@@ -29,10 +29,10 @@ jobs:
           path: Library
           key: Library
       - id: tests
-        name: Run tests in Unity
-        customImage: 'serjame/unity-editor-opencv:2020.2.3f1'
+        name: Run tests in Unity        
         uses: game-ci/unity-test-runner@v2.0-alpha-2
         with:
+          customImage: 'serjame/unity-editor-opencv:2020.2.3f1'
           unityVersion: ${{ matrix.unityVersion }}             
           testMode: ${{ matrix.testMode }}
           artifactsPath: ${{ matrix.testMode }}-artifacts
