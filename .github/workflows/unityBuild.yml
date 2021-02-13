@@ -2,7 +2,7 @@ name: Build project
 
 on:
   pull_request: {}
-  push: { branches: [master] }
+  push: { branches: [main] }
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -16,7 +16,7 @@ jobs:
       fail-fast: true
       matrix:
         unityVersion:
-          - 2020.1.17f1      
+          - 2020.1.4f1      
         testMode:
           - playmode
     steps:
