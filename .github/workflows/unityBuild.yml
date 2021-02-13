@@ -16,7 +16,7 @@ jobs:
       fail-fast: true
       matrix:
         unityVersion:
-          - 2020.1.17f1      
+          - 2020.2.4f1      
         testMode:
           - playmode
     steps:
