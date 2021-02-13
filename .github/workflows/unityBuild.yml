@@ -30,6 +30,7 @@ jobs:
           key: Library
       - id: tests
         name: Run tests in Unity
+        customImage: 'serjame/unity-editor-opencv:2020.2.3f1'
         uses: game-ci/unity-test-runner@v2.0-alpha-2
         with:
           unityVersion: ${{ matrix.unityVersion }}             
