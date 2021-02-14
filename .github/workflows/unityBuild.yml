@@ -45,22 +45,22 @@ jobs:
     name: This jub will run on push
     runs-on: ubuntu-latest    
     if: github.event.action == 'push'
-      steps:
-      - name: dummy job
-        run: echo this is job - ${{github.job}}
+    steps:
+    - name: dummy job
+      run: echo this is job - ${{github.job}}
   
   releaseJob:
     name: This jub will run on release (published)
     runs-on: ubuntu-latest    
     if: github.event.action == 'published'
-      steps:
-      - name: dummy job
-        run: echo this is job - ${{github.job}}
+    steps:
+    - name: dummy job
+      run: echo this is job - ${{github.job}}
   
   pullRequestJob:
     name: This jub will run on pull_request
     runs-on: ubuntu-latest    
     if: github.event.action == 'pull_request'
-      steps:
-      - name: dummy job
-        run: echo this is job - ${{github.job}}
+    steps:
+    - name: dummy job
+      run: echo this is job - ${{github.job}}
