@@ -115,8 +115,7 @@ jobs:
           compareLink: true
           httpCache: true
           filterByMilestone: true
-          unreleased: true
-          onlyLastTag: true
+          unreleased: true          
       - name: Upload changelog
         uses: actions/upload-artifact@v1
         with:
