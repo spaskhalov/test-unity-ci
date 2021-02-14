@@ -41,6 +41,13 @@ jobs:
   #       with:
   #         name: Test results for ${{ matrix.testMode }}
   #         path: ${{ steps.tests.outputs.artifactsPath }}
+  #
+  printjobAction:
+    name: jobaction
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo job event action = ${{github.event.action}}
+
   pushJob:
     name: This jub will run on push
     runs-on: ubuntu-latest    
