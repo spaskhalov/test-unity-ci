@@ -46,13 +46,12 @@ jobs:
     name: jobaction
     runs-on: ubuntu-latest
     steps:
-      - run: echo job = ${{github.job}}, event action type = ${{github.event.type}}, id = ${{github.event.id}}, payload = ${{github.event.payload}}
-      - run: echo ${{github}}
+      - run: echo job = ${{github.job}}, github.event_name = ${{github.event_name}}, id = ${{github.event.id}}, payload = ${{github.event.payload}}      
 
   pushJob:
     name: This jub will run on push
     runs-on: ubuntu-latest    
-    if: github.event.action == 'push'
+    if: github.event_name == 'push'
     steps:
     - name: dummy job
       run: echo this is job - ${{github.job}}
