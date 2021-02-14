@@ -73,37 +73,15 @@ jobs:
     - name: dummy job
       run: echo this is job - ${{github.job}}
 
-  setDevGroup:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push'
-    steps:
-      - name: set env variables
-        uses: allenevans/set-env@v2.0.0
-        with:
-          FIREBASE_TESTERS_GROUP: 'devs'
-      - name: Printenv
-        run: |
-          echo "FIREBASE_TESTERS_GROUP=${MY_ENV_VAR}"
-          printenv
-
-  setProductGroup:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'release' && github.event.action == 'published'
-    steps:
-      - name: set env variables
-        uses: allenevans/set-env@v2.0.0
-        with:
-          FIREBASE_TESTERS_GROUP: 'productTeam'
-      - name: Printenv
-        run: |
-          echo "FIREBASE_TESTERS_GROUP=${MY_ENV_VAR}"
-          printenv
-
   printSelectedGroupJob:
-    runs-on: ubuntu-latest
-    needs: [setDevGroup, setProductGroup]
-    #if: needs.setDevGroup.result == 'success' || needs.setProductGroup.result == 'success'
-    if: always()
+    runs-on: ubuntu-latest            
     steps:
+      - name: set dev groups
+        if: github.event_name == 'push'
+        run: echo "devs" >> $FIREBASE_TESTERS_GROUP
+      - name: set product groups
+        if: github.event_name == 'release' && github.event.action == 'published'
+        run: echo "productTeam" >> $FIREBASE_TESTERS_GROUP
+
       - run: echo "product team setted to ${FIREBASE_TESTERS_GROUP}"
 
