@@ -77,11 +77,15 @@ jobs:
     runs-on: ubuntu-latest            
     steps:
       - name: set dev groups
-        if: github.event_name == 'push'
-        run: echo "devs" >> $FIREBASE_TESTERS_GROUP
+        if: github.event_name == 'push'        
+        uses: allenevans/set-env@v2.0.0
+        with:
+          FIREBASE_TESTERS_GROUP: 'devs'
       - name: set product groups
         if: github.event_name == 'release' && github.event.action == 'published'
-        run: echo "productTeam" >> $FIREBASE_TESTERS_GROUP
+        uses: allenevans/set-env@v2.0.0
+        with:
+          FIREBASE_TESTERS_GROUP: 'productTeam'
 
       - run: echo "product team setted to ${FIREBASE_TESTERS_GROUP}"
 
