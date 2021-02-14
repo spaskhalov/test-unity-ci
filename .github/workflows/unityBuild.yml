@@ -63,8 +63,8 @@ jobs:
     if: github.event_name == 'release' && github.event.action == 'published'
     steps:
     - name: dummy job
-      run: echo this is job - ${{github.job}}
-  
+      run: echo this is job - ${{github.job}}    
+
   pullRequestJob:
     name: This jub will run on pull_request
     runs-on: ubuntu-latest    
@@ -72,3 +72,28 @@ jobs:
     steps:
     - name: dummy job
       run: echo this is job - ${{github.job}}
+
+  setDevGroup:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: set env variables
+        uses: allenevans/set-env@v2.0.0
+        with:
+          FIREBASE_TESTERS_GROUP: 'devs'
+
+  setProductGroup:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release' && github.event.action == 'published'
+    steps:
+      - name: set env variables
+        uses: allenevans/set-env@v2.0.0
+        with:
+          FIREBASE_TESTERS_GROUP: 'productTeam'
+
+  printSelectedGroupJob:
+    runs-on: ubuntu-latest
+    needs: [setDevGroup,setProductGroup]
+    steps:
+      - run: echo product team setted to $FIREBASE_TESTERS_GROUP
+
