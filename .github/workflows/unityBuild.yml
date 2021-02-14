@@ -81,6 +81,10 @@ jobs:
         uses: allenevans/set-env@v2.0.0
         with:
           FIREBASE_TESTERS_GROUP: 'devs'
+      - name: Printenv
+        run: |
+          echo "FIREBASE_TESTERS_GROUP=${MY_ENV_VAR}"
+          printenv
 
   setProductGroup:
     runs-on: ubuntu-latest
@@ -90,6 +94,10 @@ jobs:
         uses: allenevans/set-env@v2.0.0
         with:
           FIREBASE_TESTERS_GROUP: 'productTeam'
+      - name: Printenv
+        run: |
+          echo "FIREBASE_TESTERS_GROUP=${MY_ENV_VAR}"
+          printenv
 
   printSelectedGroupJob:
     runs-on: ubuntu-latest
