@@ -46,7 +46,7 @@ jobs:
     name: jobaction
     runs-on: ubuntu-latest
     steps:
-      - run: echo job event action = ${{github.event.action}}
+      - run: echo job event action type = ${{github.event.type}}
 
   pushJob:
     name: This jub will run on push
