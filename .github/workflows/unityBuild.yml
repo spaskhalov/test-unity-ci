@@ -59,7 +59,7 @@ jobs:
   releaseJob:
     name: This jub will run on release (published)
     runs-on: ubuntu-latest    
-    if: github.event.action == 'published'
+    if: github.event_name == 'release' && github.event.action == 'published'
     steps:
     - name: dummy job
       run: echo this is job - ${{github.job}}
@@ -67,7 +67,7 @@ jobs:
   pullRequestJob:
     name: This jub will run on pull_request
     runs-on: ubuntu-latest    
-    if: github.event.action == 'pull_request'
+    if: github.event_name == 'pull_request'
     steps:
     - name: dummy job
       run: echo this is job - ${{github.job}}
