@@ -84,7 +84,11 @@ jobs:
   generateChangeLog:
     name: Generate change log
     runs-on: ubuntu-latest    
-    steps:   
+    steps:        
+      - name: Clone Repository
+        uses: actions/checkout@v2
+        with:
+          lfs: false      
       - name: Generate changelog from git
         uses: spaskhalov/action-github-changelog-generator@v2.2.4
         with:
