@@ -106,7 +106,7 @@ jobs:
           pullRequests: true
           prWoLabels: true
           verbose: true
-          compareLink: true
+          #compareLink: true
           httpCache: true
           filterByMilestone: true
           unreleased: true          
