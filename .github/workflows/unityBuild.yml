@@ -124,13 +124,13 @@ jobs:
         run: echo this is job - ${{github.job}}    
       - name: print curent dir
         run: |        
-        pwd        
-        ls 
+          pwd        
+          ls 
       - name: print upper dir
         run: |
-        cd ..        
-        pwd        
-        ls
+          cd ..        
+          pwd        
+          ls
       - name: Update Release Body
         uses: tubone24/update_release@v1.1.0
         env:
