@@ -110,13 +110,13 @@ jobs:
           unreleased: true          
           onlyLastTag: true
       - name: Update Release Body
+        if: github.event_name == 'release' && github.event.action == 'published'
         uses: tubone24/update_release@v1.1.0
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           body_path: CHANGELOG.md      
-      - name: Upload changelog
-        if: github.event_name == 'release' && github.event.action == 'published'
+      - name: Upload changelog        
         uses: actions/upload-artifact@v1
         with:
           name: Changelog
