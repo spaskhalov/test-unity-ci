@@ -107,8 +107,15 @@ jobs:
           compareLink: true
           httpCache: true
           filterByMilestone: true
-          unreleased: true          
+          unreleased: true
+      - name: Update Release Body
+        uses: tubone24/update_release@v1.1.0
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          body_path: CHANGELOG.md      
       - name: Upload changelog
+        if: github.event_name == 'release' && github.event.action == 'published'
         uses: actions/upload-artifact@v1
         with:
           name: Changelog
@@ -121,19 +128,4 @@ jobs:
     if: github.event_name == 'release' && github.event.action == 'published'
     steps:
       - name: dummy job
-        run: echo this is job - ${{github.job}}    
-      - name: print curent dir
-        run: |        
-          pwd        
-          ls 
-      - name: print upper dir
-        run: |
-          cd ..        
-          pwd        
-          ls
-      - name: Update Release Body
-        uses: tubone24/update_release@v1.1.0
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          body_path: ${{ github.workspace }}/CHANGELOG.md
+        run: echo this is job - ${{github.job}}
