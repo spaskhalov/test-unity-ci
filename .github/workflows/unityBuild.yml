@@ -136,4 +136,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          body_path: $GITHUB_WORKSPACE/CHANGELOG.md
+          body_path: ${{ github.workspace }}/CHANGELOG.md
