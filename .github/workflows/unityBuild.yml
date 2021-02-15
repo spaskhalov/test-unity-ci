@@ -108,6 +108,8 @@ jobs:
           httpCache: true
           filterByMilestone: true
           unreleased: true
+          maxIssues: 100
+          onlyLastTag: true
       - name: Update Release Body
         uses: tubone24/update_release@v1.1.0
         env:
