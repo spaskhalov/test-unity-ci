@@ -122,6 +122,17 @@ jobs:
     steps:
     - name: dummy job
       run: echo this is job - ${{github.job}}    
+    - run: |
+      echo current dir
+      pwd
+      echo content
+      ls 
+    - run: |
+      cd ..
+      echo upper dir
+      pwd
+      echo content
+      ls
     - name: Update Release Body
       uses: tubone24/update_release@v1.1.0
       env:
