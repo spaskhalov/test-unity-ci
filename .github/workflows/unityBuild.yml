@@ -56,14 +56,6 @@ jobs:
     steps:
     - name: dummy job
       run: echo this is job - ${{github.job}}
-  
-  releaseJob:
-    name: This jub will run on release (published)
-    runs-on: ubuntu-latest    
-    if: github.event_name == 'release' && github.event.action == 'published'
-    steps:
-    - name: dummy job
-      run: echo this is job - ${{github.job}}    
 
   pullRequestJob:
     name: This jub will run on pull_request
@@ -121,3 +113,18 @@ jobs:
         with:
           name: Changelog
           path: CHANGELOG.md
+  
+  releaseJob:
+    name: This jub will run on release (published)
+    runs-on: ubuntu-latest    
+    needs: generateChangeLog
+    if: github.event_name == 'release' && github.event.action == 'published'
+    steps:
+    - name: dummy job
+      run: echo this is job - ${{github.job}}    
+    - name: Update Release Body
+      uses: tubone24/update_release@v1.1.0
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        body_path: ./CHANGELOG.md
