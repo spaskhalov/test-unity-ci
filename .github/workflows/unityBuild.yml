@@ -90,7 +90,7 @@ jobs:
         with:
           lfs: false      
       - name: Generate changelog from git
-        uses: spaskhalov/github-changelog-generator-action@v.2.2.1
+        uses: spaskhalov/action-github-changelog-generator@v.2.2.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           #sinceTag: ${{needs.getBuildVersion.outputs.buildVersion}}
